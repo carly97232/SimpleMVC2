@@ -3,28 +3,28 @@
  * Created by PhpStorm.
  * User: jovanela
  * Date: 11/11/18
- * Time: 19:40
+ * Time: 21:06
  */
 
 namespace Model;
-// src/Model/ItemManager.php
+// src/Model/CategoryManager.php
 require __DIR__ . '/../../app/db.php';
 
-// récupération de tous les items
-class ItemManager
+
+class CategoryManager
 {
-    public function selectAllItems() :array
+    public function selectAllCategories() :array
     {
         $pdo = new \PDO(DSN, USER, PASS);
-        $query = "SELECT * FROM item";
+        $query = "SELECT * FROM category";
         $res = $pdo->query($query);
         return $res->fetchAll();
     }
 
-    public function selectOneItem(int $id)
+    public function selectOneCategory(int $id)
     {
         $pdo = new \PDO(DSN, USER, PASS);
-        $query = "SELECT * FROM item WHERE id = :id";
+        $query = "SELECT * FROM category WHERE id = :id";
         $statement = $pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
@@ -32,5 +32,3 @@ class ItemManager
         return $statement->fetch();
     }
 }
-
-
